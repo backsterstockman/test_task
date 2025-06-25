@@ -140,7 +140,11 @@ def execute_command():
         data = load_data(args.file)
         filtered = apply_where(data, args.where) if args.where else data
         if args.aggregate:
-            header, val = apply_aggregate(filtered, args.aggregate)
-            print(tabulate([[val]], headers=[header], tablefmt='github'))
+            result = apply_aggregate(filtered, args.aggregate)
+            if len(result) == 2:
+                header, value = result
+                print(tabulate([[value]], headers=[header], tablefmt='github'))
+
         else:
-            print(tabulate(filtered, headers='keys', tablefmt='github'))
+            if filtered != data:
+                print(tabulate(filtered, headers='keys', tablefmt='github'))
