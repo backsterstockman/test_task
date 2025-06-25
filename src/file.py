@@ -146,5 +146,4 @@ def execute_command():
                 print(tabulate([[value]], headers=[header], tablefmt='github'))
 
         else:
-            if filtered != data:
-                print(tabulate(filtered, headers='keys', tablefmt='github'))
+            print(tabulate(filtered, headers='keys', tablefmt='github'))
